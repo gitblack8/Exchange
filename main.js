@@ -9,13 +9,13 @@
 
 
 let currrencyRatio = {
-  USD:{
+  USD: {
     USD: 1,
     KRW: 1318.70,
     VND: 24325,
     unit: "달러"
   },
-  KRW:{
+  KRW: {
     KRW: 1,
     USD: 0.00076,
     VND: 18.43,
@@ -28,27 +28,64 @@ let currrencyRatio = {
     unit: "동"
   }
 }
-let fromCurrency = "USD"
 
-document
-  .querySelectorAll("#from-currency a")
-  .forEach((menu) => menu.addEventListener("click", 
-    function(){
-      //1. 버튼을 가져 온다.
-      document.getElementById("from-button").textContent = this.textContent
-      //2. 버튼의 값을 바꾼다.
-      //3. 바뀐 값을 저장한다.
-      fromCurrency = this.textContent
-      
-  }))
+document.addEventListener("DOMContentLoaded",
+  function (e) {
+    let fromButton = document.getElementById("from-button")
+    let fromCurrency = document.querySelectorAll("#from-currency a")
 
-  let toCurrency = "USD"
+    fromCurrency.forEach((element) => element.addEventListener("click",
+      function (e) {
+        fromButton.textContent = this.textContent
+      })
+    )
 
-  document
-    .querySelectorAll("#to-currency a")
-    .forEach((menu) => menu.addEventListener("click",
-      function(){
-        document.getElementById("to-button").textContent = this.textContent
-        toCurrency = this.textContent
+    let toButton = document.getElementById("to-button")
+    let toCurrency = document.querySelectorAll("#to-currency a")
+
+    toCurrency.forEach((element) => element.addEventListener("click",
+      function (e) {
+        toButton.textContent = this.textContent
+      })
+    )
+    
+    let inputMoney = document.getElementById("from-input")
+    let toMoney = document.getElementById("to-input")
+
+    inputMoney.addEventListener("input",
+      function(e){
+
       }
-  ))
+    )
+
+  }
+)
+
+// function convert() {
+//   let amount = document.getElementById("from-input").value
+//   let exchangedmoney = amount * currrencyRatio[fromCurrency][toCurrency]
+
+//   document.getElementById("to-input").value = exchangedmoney
+// }
+
+
+
+
+// document
+//   .querySelectorAll("#from-currency a")
+//   .forEach((menu) => menu.addEventListener("click",
+//     function(){
+//       document.getElementById("from-button").textContent = this.textContent
+//       fromCurrency = this.textContent
+
+//   }))
+
+// document
+//   .querySelectorAll("#to-currency a")
+//   .forEach((menu) => menu.addEventListener("click",
+//     function(){
+//       document.getElementById("to-button").textContent = this.textContent
+//       toCurrency = this.textContent
+//     }
+// ))
+
