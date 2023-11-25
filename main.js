@@ -37,6 +37,12 @@ document.addEventListener("DOMContentLoaded",
     fromCurrency.forEach((element) => element.addEventListener("click",
       function (e) {
         fromButton.textContent = this.textContent
+        inputText.textContent = currrencyRatio[fromButton.textContent].unit
+        if (inputMoney.value != 0) {
+          inputMoney.value = toMoney.value * currrencyRatio[toButton.textContent][fromButton.textContent]
+          inputText.textContent = inputMoney.value + currrencyRatio[fromButton.textContent].unit
+        }
+        
       })
     )
 
@@ -46,6 +52,11 @@ document.addEventListener("DOMContentLoaded",
     toCurrency.forEach((element) => element.addEventListener("click",
       function (e) {
         toButton.textContent = this.textContent
+        toText.textContent = currrencyRatio[toButton.textContent].unit
+        if (toMoney.value != 0) {
+          toMoney.value = inputMoney.value * currrencyRatio[fromButton.textContent][toButton.textContent]
+          toText.textContent = toMoney.value + currrencyRatio[toButton.textContent].unit
+        }
       })
     )
     
@@ -54,9 +65,21 @@ document.addEventListener("DOMContentLoaded",
 
     inputMoney.addEventListener("input",
       function(e){
-
+        inputText.textContent = inputMoney.value + currrencyRatio[fromButton.textContent].unit
+        toMoney.value = inputMoney.value * currrencyRatio[fromButton.textContent][toButton.textContent]
+        toText.textContent = toMoney.value + currrencyRatio[toButton.textContent].unit
       }
     )
+    
+    toMoney.addEventListener("input",
+      function(e){
+        toText.textContent = toMoney.value + currrencyRatio[toButton.textContent].unit
+        inputMoney.value = toMoney.value * currrencyRatio[toButton.textContent][fromButton.textContent]
+        inputText.textContent = inputMoney.value + currrencyRatio[fromButton.textContent].unit
+      }
+    )
+
+
 
   }
 )
